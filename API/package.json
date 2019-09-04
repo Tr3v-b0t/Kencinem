@@ -1,0 +1,23 @@
+{
+  "name": "kencinema",
+  "version": "1.0.0",
+  "description": "Its mobile app that enable users to access cinemas anywhere they are",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tr3v-b0t/Kencinem.git"
+  },
+  "keywords": [
+    "cinema",
+    "imax"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tr3v-b0t/Kencinem/issues"
+  },
+  "homepage": "https://github.com/Tr3v-b0t/Kencinem#readme"
+}
