@@ -5,11 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
-    "migrate": "npx sequelize-cli db:migrate",
+    "migrate":" sequelize db:migrate",
     "build": "babel src -d dist",
     "serve": "node dist/server.js",
-    "test": "./node_modules/.bin/mocha --compilers js:@babel/register",
-    "gen": "node ./node_modules/.bin/babel-node src/migrations-generator.js"
+    "test": "./node_modules/.bin/mocha --compilers js:@babel/register"
   },
   "repository": {
     "type": "git",

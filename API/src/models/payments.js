@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Payments = sequelize.define('Payments', {
     ticketId: DataTypes.INTEGER,

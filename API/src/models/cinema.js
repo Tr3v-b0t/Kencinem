@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Cinema = sequelize.define('Cinema', {
     location: DataTypes.STRING,
