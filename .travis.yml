@@ -10,6 +10,7 @@ directories:
 services:
   - mysql
 before_install:
+  - cd API
   - mysql -e 'CREATE DATABASE IF NOT EXISTS cinema_test;'
 script:
   - npm run test
