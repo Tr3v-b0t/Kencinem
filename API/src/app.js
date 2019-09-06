@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import express from 'express';
 import bodyParser from 'body-parser';
-import userRoutes from './routes/user-routes'
 import '@babel/polyfill';
 
 const app = express();
@@ -11,8 +10,9 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
-// routes
-app.use('/api/v1',userRoutes)
-
+app.get('/', (req, res) => res.status(200).json({
+  status: 200,
+  message: 'Welcome to Kenya cinema API',
+}));
 
 export default app;
