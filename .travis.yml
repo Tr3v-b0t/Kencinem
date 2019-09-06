@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - stable
+git:
+  depth:       3
+cache: npm
+install: npm install
+directories:
+  - node_modules
+services:
+  - mysql
+before_install:
+  - cd API
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS cinema_test;'
+script:
+  - npm run test
+after_success:
+  - npm run coveralls
+notifications:
+  email:       false
