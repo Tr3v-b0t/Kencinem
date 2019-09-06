@@ -1,6 +1,4 @@
 {
-    "presets": [
-        "@babel/preset-env"
-    ],
-    "plugins": ["wildcard"]
+  "presets": ["@babel/preset-env"],
+  "plugins": ["wildcard", "@babel/transform-runtime"]
 }
