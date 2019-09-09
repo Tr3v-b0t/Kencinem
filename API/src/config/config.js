@@ -10,7 +10,7 @@ module.exports = {
   },
   test: {
     username: process.env.t_username,
-    password: process.env.t_password,
+    password: process.env.t_password || '',
     database: process.env.t_database,
     host: '127.0.0.1',
     dialect: 'mysql',
