@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Movie = sequelize.define('Movie', {
+  const Movie = sequelize.define('movie', {
     genre: DataTypes.STRING,
     status: DataTypes.STRING,
     releaseDate: DataTypes.DATE,

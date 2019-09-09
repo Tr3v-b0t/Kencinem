@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Payments = sequelize.define('Payments', {
+  const Payments = sequelize.define('payments', {
     ticketId: DataTypes.INTEGER,
     status: DataTypes.STRING,
     amount: DataTypes.INTEGER,
@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Payments.associate = function (models) {
     // associations can be defined here
-    Payments.hasOne(models.Tickets, {
+    Payments.hasOne(models.tickets, {
       foreignKey: 'ticketId',
       as: 'seats',
     });
