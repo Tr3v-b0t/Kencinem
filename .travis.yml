@@ -12,6 +12,7 @@ services:
 before_install:
   - cd API
   - mysql -e 'CREATE DATABASE IF NOT EXISTS cinema_test;'
+  - npm run migrate-test
 script:
   - npm run test
 after_success:
