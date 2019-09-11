@@ -23,7 +23,6 @@ describe('Get cinemas successful cinemas', () => {
         chai.request(app)
             .get('/api/v1/cinema/1')
             .end((err, res) => {
-                console.log(res.body);
             res.should.have.status(200);
             res.body.should.be.a('object');
             if (err) return done();
@@ -46,7 +45,6 @@ describe('Get cinemas successful cinemas', () => {
         chai.request(app)
             .get('/api/v1/cinema/1')
             .end((err, res) => {
-                console.log(res.body);
             res.should.have.status(404);
             res.body.should.be.a('object');
             if (err) return done();
