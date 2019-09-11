@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Cinema = sequelize.define('Cinema', {
+  const Cinema = sequelize.define('cinema', {
     location: DataTypes.STRING,
     numberOfSeats: DataTypes.INTEGER,
     openTime: DataTypes.TIME,
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Cinema.associate = function (models) {
     // associations can be defined here
-    Cinema.hasMany(models.Seats, {
+    Cinema.hasMany(models.seats, {
       foreignKey: 'cinemaId',
       as: 'seats',
     });

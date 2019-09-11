@@ -7,13 +7,15 @@ module.exports = {
     database: process.env.database,
     host: '127.0.0.1',
     dialect: 'mysql',
+    logging: false,
   },
   test: {
     username: process.env.t_username,
-    password: process.env.t_password,
-    database: process.env.t_username,
+    password: process.env.t_password || '',
+    database: process.env.t_database,
     host: '127.0.0.1',
     dialect: 'mysql',
+    logging: false,
   },
   production: {
     username: 'root',
@@ -21,5 +23,6 @@ module.exports = {
     database: 'cinema',
     host: '127.0.0.1',
     dialect: 'mysql',
+    logging: false,
   },
 };

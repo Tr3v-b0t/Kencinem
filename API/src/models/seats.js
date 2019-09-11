@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-  const Seats = sequelize.define('Seats', {
+  const Seats = sequelize.define('seats', {
     status: DataTypes.STRING,
     ticketId: {
       type: DataTypes.INTEGER,
@@ -15,15 +15,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Seats.associate = function (models) {
     // associations can be defined here
-    Seats.belongsTo(models.Cinema, {
+    Seats.belongsTo(models.cinema, {
       foreignKey: 'cinemaId',
       onDelete: 'CASCADE',
     });
-    Seats.belongsTo(models.Tickets, {
+    Seats.belongsTo(models.tickets, {
       foreignKey: 'ticketId',
       onDelete: 'CASCADE',
     });
-    Seats.belongsTo(models.Movie, {
+    Seats.belongsTo(models.movie, {
       foreignKey: 'movieId',
       onDelete: 'CASCADE',
     });

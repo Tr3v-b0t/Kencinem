@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Tickets = sequelize.define('Tickets', {
+  const Tickets = sequelize.define('tickets', {
     quantity: DataTypes.INTEGER,
     type: DataTypes.STRING,
     timeOfPurchase: DataTypes.TIME,
@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Tickets.associate = function(models) {
     // associations can be defined here
-    Tickets.hasMany(models.Seats, {
+    Tickets.hasMany(models.seats, {
       foreignKey: 'ticketId',
       as: 'seats',
     });
-    Tickets.BelongTo(models.Movie, {
+    Tickets.belongsTo(models.movie, {
       foreignKey: 'movieId',
       as: 'movie',
     });
