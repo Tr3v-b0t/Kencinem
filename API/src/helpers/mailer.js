@@ -9,8 +9,7 @@ const Mailer = async (to, tokenLink) => {
         to,
         from: "benlegendj@gmail.com",
         subject: "Account activation",
-        html:
-            "<strong>welcome to kenCinema</strong> <p>`click the link below to activate your accout ${tokenLink} </p>"
+        html: "<strong>welcome to kenCinema</strong> <p> click the link below to activate your account </p>" +` ${tokenLink} `
     });
 };
 export default Mailer;

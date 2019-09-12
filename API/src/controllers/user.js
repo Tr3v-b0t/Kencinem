@@ -1,16 +1,17 @@
 import db from "../models";
 import UserServices from "../services/user.js";
 import Utils from "../helpers/utils";
+import Mailer from "../helpers/mailer";
 const { hashPassword, encodeToken, createPayload } = Utils;
-
+const {serialize} = Utils
 import Res from "../helpers/responses";
 export default class userControllers {
     static async signUp(req, res) {
         const newUser = req.body;
-        const { email } = newUser;
+        const { email, password } = newUser;
         const user = await UserServices.findByEmail(email);
         if (!user) {
-            const hashedPassword = hashPassword(newUser.password);
+            const hashedPassword = hashPassword(password);
             try {
                 const token = encodeToken(
                     createPayload(
@@ -24,11 +25,13 @@ export default class userControllers {
                     password: hashedPassword,
                     temporaryToken: token
                 });
+                const tokenLink = `http://localhost:3000/api/v1/verify?token=${token}`;
+                await Mailer(email, tokenLink);
                 user.token = token;
                 return Res.handleSuccess(
                     201,
                     "User registered successfully",
-                    user,
+                    serialize(user),
                     res
                 );
             } catch (error) {
@@ -41,5 +44,8 @@ export default class userControllers {
                 res
             );
         }
+    }
+    static async verifyAccount(req, res) {
+        const { token } = req.query;
     }
 }

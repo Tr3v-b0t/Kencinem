@@ -5,24 +5,22 @@ import jwt from 'jsonwebtoken'
  */
 export default class Utils {
     static hashPassword(password) {
-        bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
     }
     static serialize({
-        firstname,
-        lastname,
+        name,
         email,
-        isAgent,
-        isAdmin,
+        verified,
+        role,
         phoneNumber,
         token
     }) {
         return {
-            firstname,
-            lastname,
+            name,
             email,
-            isAgent,
-            isAdmin,
             phoneNumber,
+            role,
+            verified,
             token
         };
     }

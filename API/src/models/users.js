@@ -17,11 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
         Users.hasMany(models.tickets, {
             foreignKey: "userId",
-            as: "tickets"
+            as: "tickets",
+            onDelete: "cascade"
         });
         Users.hasMany(models.payments, {
             foreignKey: "userId",
-            as: "payments"
+            as: "payments",
+            onDelete: "cascade"
         });
     };
     return Users;
