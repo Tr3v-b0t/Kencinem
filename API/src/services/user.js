@@ -2,7 +2,7 @@ import db from "../models";
 
 class UserServices {
     static async findByEmail(email) {
-        const user = await db.User.findOne({
+        const user = await db.users.findOne({
             where: { email }
         });
         if (!user) return null;
