@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   Cinema.associate = function (models) {
     // associations can be defined here
     Cinema.hasMany(models.seats, {
-      foreignKey: 'cinemaId',
-      as: 'seats',
+        foreignKey: "cinemaId",
+        as: "seats",
+        onDelete: "cascade"
     });
   };
   return Cinema;

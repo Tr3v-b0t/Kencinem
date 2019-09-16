@@ -8,8 +8,9 @@ module.exports = (sequelize, DataTypes) => {
   Payments.associate = function (models) {
     // associations can be defined here
     Payments.hasOne(models.tickets, {
-      foreignKey: 'ticketId',
-      as: 'seats',
+        foreignKey: "ticketId",
+        as: "seats",
+        onDelete: "cascade"
     });
   };
   return Payments;

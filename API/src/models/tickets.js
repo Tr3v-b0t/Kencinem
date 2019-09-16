@@ -14,12 +14,14 @@ module.exports = (sequelize, DataTypes) => {
   Tickets.associate = function(models) {
     // associations can be defined here
     Tickets.hasMany(models.seats, {
-      foreignKey: 'ticketId',
-      as: 'seats',
+        foreignKey: "ticketId",
+        as: "seats",
+        onDelete: "cascade"
     });
     Tickets.belongsTo(models.movie, {
-      foreignKey: 'movieId',
-      as: 'movie',
+        foreignKey: "movieId",
+        as: "movie",
+        onDelete: "cascade"
     });
   };
   return Tickets;

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("users", {
@@ -25,7 +25,16 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
-        defaultValue:'User',
+        defaultValue: "User",
+        allowNull: false
+      },
+      verified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
+      temporaryToken: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       createdAt: {
@@ -39,6 +48,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable("users");
   }
 };
