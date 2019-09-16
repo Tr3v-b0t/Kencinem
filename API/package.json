@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon --exec babel-node src/server.js",
     "migrate": "npx sequelize-cli db:migrate",
-    "migrate-test": "NODE_ENV=test npx sequelize-cli db:migrate",
+    "migrate-test": "NODE_ENV=test npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate",
     "build": "babel src -d dist",
     "serve": "node dist/server.js",
     "test": "NODE_ENV=test nyc ./node_modules/.bin/mocha --require @babel/register ./src/__tests__ --recursive  --timeout 150000 --exit",

@@ -23,10 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'ticketId',
       onDelete: 'CASCADE',
     });
-    Seats.belongsTo(models.movie, {
-      foreignKey: 'movieId',
-      onDelete: 'CASCADE',
-    });
+
   };
   return Seats;
 };
