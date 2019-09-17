@@ -18,11 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "seats",
         onDelete: "cascade"
     });
-    Tickets.belongsTo(models.movie, {
-        foreignKey: "movieId",
-        as: "movie",
-        onDelete: "cascade"
-    });
+
   };
   return Tickets;
 };

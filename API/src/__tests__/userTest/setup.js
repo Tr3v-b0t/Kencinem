@@ -12,5 +12,11 @@ export default {
         "email": "buckyyacky@gmail.com",
         "phoneNumber": "0715357867",
         "role": "agent"
+    },
+    verify: {
+        "name": "joseph",
+        "password": "@Bend1234",
+        "email": "patmuiak@gmail.com",
+        "phoneNumber": "07123456789",
     }
 };

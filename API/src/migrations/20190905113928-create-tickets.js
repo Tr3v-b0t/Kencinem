@@ -24,11 +24,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
-        references: {
-          model: 'movies',
-          key: 'id',
-          as: 'movieId',
-        },
       },
       ticketToken: {
         type: Sequelize.STRING,
