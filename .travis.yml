@@ -4,7 +4,9 @@ node_js:
 git:
   depth:       3
 cache: npm
-install: npm install
+install:
+  - npm i -g sequelize-cli
+  - npm install
 directories:
   - node_modules
 services:
@@ -12,10 +14,8 @@ services:
 before_install:
   - cd API
   - mysql -e 'CREATE DATABASE IF NOT EXISTS cinema_test;'
-before_script:
-  - npm run migrate-test
 script:
-  - npm run test
+  - npm run test-dev
 after_success:
   - npm run coveralls
 notifications:
