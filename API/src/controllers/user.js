@@ -52,7 +52,7 @@ export default class userControllers {
             const decoded = jwt.verify(token, process.env.SECRET_KEY);
             const user = await UserServices.findByEmail(decoded.user.email);
             if (!user.verified) {
-                db.users.update(
+                await db.users.update(
                     {
                         verified: true
                     },
@@ -139,7 +139,7 @@ export default class userControllers {
                     user.role
                 )
             );
-            db.users.update(
+            await db.users.update(
                 {
                     temporaryToken: token
                 },
@@ -147,9 +147,10 @@ export default class userControllers {
             );
             const tokenLink = `http://localhost:3000/api/v1/auth/redirect?key=${token}`;
             await ResetMail(email, tokenLink);
-            return Res.handleOk(
+            return Res.handleSuccess(
                 200,
                 "Check your email to reset password",
+                token,
                 res
             );
         } catch (error) {
