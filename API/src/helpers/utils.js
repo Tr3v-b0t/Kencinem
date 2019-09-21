@@ -7,6 +7,12 @@ export default class Utils {
     static hashPassword(password) {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
     }
+
+    static async check(password, hashed) {
+        const result = await bcrypt.compareSync(password, hashed);
+        return result;
+    }
+
     static serialize({
         name,
         email,

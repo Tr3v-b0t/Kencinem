@@ -66,4 +66,59 @@ export default class Validate {
 
         validator(req, res, schema, next);
     }
+
+    static login(req, res, next) {
+        const schema = Joi.object().keys({
+            email: Joi.string()
+                .regex(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)
+                .required()
+                .error(onError)
+                .label("please provide a valid email"),
+            password: Joi.string()
+                .regex(
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,128}$/
+                )
+                .required()
+                .error(onError)
+                .label(
+                    "password should have at least 6 characters, a uppercase,lowercase a number and a special character"
+                ),
+        });
+        
+        validator(req, res, schema, next);
+    }
+
+    static reset(req, res) {
+        const schema = Joi.object().keys({
+            email: Joi.string()
+                .regex(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)
+                .required()
+                .error(onError)
+                .label("please provide a valid email"),
+        });
+        
+        const { error } = Joi.validate(req.body, schema, options);
+
+        if (error) {
+            return Res.handleError(400, error.message, res);
+        }
+    }
+
+    static resetPassword(req, res) {
+        const schema = Joi.object().keys({
+            password: Joi.string()
+                .regex(
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,128}$/
+                )
+                .required()
+                .error(onError)
+                .label(
+                    "password should have at least 6 characters, a uppercase,lowercase a number and a special character"
+                ),
+        });
+        const { error } = Joi.validate(req.body, schema, options);
+        if (error) {
+            return Res.handleError(400, error.message, res);
+        }
+    }
 }
