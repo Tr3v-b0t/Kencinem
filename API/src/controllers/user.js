@@ -1,11 +1,11 @@
-import jwt from "jsonwebtoken";
-import db from "../models";
-import UserServices from "../services/user.js";
-import Utils from "../helpers/utils";
-import { Mailer, ResetMail } from "../helpers/mailer";
+import jwt from 'jsonwebtoken';
+import db from '../models';
+import UserServices from '../services/user.js';
+import Utils from '../helpers/utils';
+import { Mailer, ResetMail } from '../helpers/mailer';
 const { hashPassword, encodeToken, createPayload } = Utils;
 const { serialize } = Utils;
-import Res from "../helpers/responses";
+import Res from '../helpers/responses';
 export default class userControllers {
     static async signUp(req, res) {
         const newUser = req.body;
@@ -31,7 +31,7 @@ export default class userControllers {
                 user.token = token;
                 return Res.handleSuccess(
                     201,
-                    "User registered successfully",
+                    'User registered successfully',
                     serialize(user),
                     res
                 );
@@ -60,7 +60,7 @@ export default class userControllers {
                 );
                 return Res.handleSuccess(
                     200,
-                    "yaaay you have been verified please proceed to log in !!!",
+                    'yaaay you have been verified please proceed to log in !!!',
                     serialize(user),
                     res
                 );
@@ -68,13 +68,13 @@ export default class userControllers {
 
             return Res.handleError(
                 409,
-                "you are already verified please login to proceed !!!",
+                'you are already verified please login to proceed !!!',
                 res
             );
         } catch (error) {
             return Res.handleError(
                 401,
-                "User verification failed please try again ",
+                'User verification failed please try again ',
                 res
             );
         }
@@ -84,39 +84,28 @@ export default class userControllers {
         try {
             const { email, password } = req.body;
             const user = await UserServices.findByEmail(email);
-            if (!user) return Res.handleError(
+            if (!user)
+                return Res.handleError(
                     404,
-                    "No user with such email, please try to signup",
+                    'No user with such email, please try to signup',
                     res
                 );
 
-            const pass = await Utils.check(password, user.password)
-            if (!pass) return Res.handleError(
+            const pass = await Utils.check(password, user.password);
+            if (!pass)
+                return Res.handleError(
                     401,
-                    "Either email or password is invalid",
+                    'Either email or password is invalid',
                     res
                 );
-            if (!user.verified) return Res.handleError(
-                403,
-                "Please verify your account",
-                res
-            );
-            
+            if (!user.verified)
+                return Res.handleError(403, 'Please verify your account', res);
+
             const token = encodeToken(
-                createPayload(
-                    user.phoneNumber,
-                    user.email,
-                    user.role
-                )
+                createPayload(user.phoneNumber, user.email, user.role)
             );
 
-            return Res.handleSuccess(
-                200,
-                "signed in successful",
-                token,
-                res
-            );
-
+            return Res.handleSuccess(200, 'signed in successful', token, res);
         } catch (error) {
             return Res.handleError(500, error.toString(), res);
         }
@@ -126,18 +115,15 @@ export default class userControllers {
         const { email } = req.body;
         try {
             const user = await UserServices.findByEmail(email);
-            if (!user) return Res.handleError(
+            if (!user)
+                return Res.handleError(
                     404,
-                    "No user with such email, please try to signup",
+                    'No user with such email, please try to signup',
                     res
                 );
-           
+
             const token = encodeToken(
-                createPayload(
-                    user.phoneNumber,
-                    user.email,
-                    user.role
-                )
+                createPayload(user.phoneNumber, user.email, user.role)
             );
             await db.users.update(
                 {
@@ -149,7 +135,7 @@ export default class userControllers {
             await ResetMail(email, tokenLink);
             return Res.handleSuccess(
                 200,
-                "Check your email to reset password",
+                'Check your email to reset password',
                 token,
                 res
             );
@@ -166,7 +152,7 @@ export default class userControllers {
 
             return Res.handleSuccess(
                 200,
-                "click the link below to reset password",
+                'click the link below to reset password',
                 link,
                 res
             );

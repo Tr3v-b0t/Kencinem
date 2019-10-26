@@ -37,6 +37,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      duration:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      poster:{
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      trailer:{
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -45,7 +57,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      
+
     });
   },
   down: (queryInterface, Sequelize) => {
